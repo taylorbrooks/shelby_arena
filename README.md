@@ -21,21 +21,15 @@ Add this line to your application's Gemfile:
     password: ...,
   )
 
-  # Authenticating with authorization token
-  client = ShelbyArena::Client.new(
-    url: ...,
-    authorization_token: ...,
-  )
-
-  # Find a specific person
-  client.find_person_by_email('gob@bluthco.com')
-  client.find_person_by_name('Tobias Funke')
+  # Find a people by attributes
+  client.find_people_by_email('gob@bluthco.com')
+  client.find_people_by_name_and_email('Tobias', 'Funke', 'tobias@bluemangroup.com')
 ````
 
 ### History
 
-View the [changelog](https://github.com/taylorbrooks/shelby_arena/blob/master/CHANGELOG.md)
-This gem follows [Semantic Versioning](http://semver.org/)
+- View the [changelog](https://github.com/taylorbrooks/shelby_arena/blob/master/CHANGELOG.md)
+- This gem follows [Semantic Versioning](http://semver.org/)
 
 ### Contributing
 
