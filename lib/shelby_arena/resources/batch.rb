@@ -35,7 +35,6 @@ module ShelbyArena
       def delete_batch(id, options = {})
         path = "batch/#{id}"
         options[:api_sig] = generate_api_sig(path, options)
-        require 'pry'; binding.pry
         delete(path, options.sort)
       end
     end
