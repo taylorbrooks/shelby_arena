@@ -22,13 +22,23 @@ module ShelbyArena
       def set_email(raw_response)
         # find_person returns an array of `Emails`
         # list_person return `FirstActiveEmail`
-        raw_response.dig('FirstActiveEmail') || raw_response.dig('Emails', 'Email', 0, 'Address')
+        emails_key = parse_emails_key(raw_response.dig('Emails', 'Email'))
+
+        raw_response.dig('FirstActiveEmail') || emails_key.first
       end
 
       def set_emails(raw_response)
         # find_person returns an array of `Emails`
         # list_person return `FirstActiveEmail`
-        raw_response.dig('Emails', 'Email')&.map { |email| email.dig('Address') } || []
+        parse_emails_key(raw_response.dig('Emails', 'Email'))
+      end
+
+      def parse_emails_key(emails_key)
+        if emails_key.is_a?(Array)
+          emails_key&.map { |email| email.dig('Address') } || []
+        else
+          [emails_key&.dig('Address')] || []
+        end
       end
     end
   end

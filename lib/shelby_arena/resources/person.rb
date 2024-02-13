@@ -4,7 +4,7 @@ module ShelbyArena
       def list_people(options = {})
         options[:api_sig] = generate_api_sig(people_path, options)
         res = get(people_path, options.sort)
-        Response::Person.format(res.dig('PersonListResult', 'Persons', 'Person'))
+        Response::Person.format_list(res.dig('PersonListResult', 'Persons', 'Person'))
       end
 
       def find_people_by_name_and_email(first_name, last_name, email)
