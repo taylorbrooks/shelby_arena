@@ -7,11 +7,26 @@ module ShelbyArena
         new(data).format
       end
 
+      def self.format_list(data)
+        new(data).format_list
+      end
+
       def initialize(data)
         @data = data
       end
 
+      def format_list
+        res = format
+
+        return [] if res.nil?
+        return [res] if res.is_a?(Hash)
+
+        res
+      end
+
       def format
+        return nil if data.nil?
+
         if data.is_a?(Array)
           data.map { |item| format_single(item) }
         else
