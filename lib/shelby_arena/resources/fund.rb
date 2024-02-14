@@ -1,7 +1,8 @@
 module ShelbyArena
   class Client
     module Fund
-      def list_funds(options = {})
+      def list_funds
+        options = {}
         options[:api_sig] = generate_api_sig(fund_path, options)
         res = get(fund_path, options.sort)
         Response::Fund.format(res.dig('FundListResult', 'Funds', 'Fund'))

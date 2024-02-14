@@ -43,7 +43,7 @@ module ShelbyArena
       end
 
       def to_boolean(string)
-        string.downcase == 'true'
+        string&.downcase == 'true'
       end
 
       def date_parse(string)
