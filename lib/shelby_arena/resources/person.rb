@@ -25,14 +25,16 @@ module ShelbyArena
       def create_person(
         first_name:,
         last_name:,
-        email:
+        email:,
+        record_status_id: 2
       )
         path = 'person/add'
 
         body = {
           'FirstName' => first_name,
           'LastName' => last_name,
-          'Emails' => ['Address' => email]
+          'Emails' => ['Address' => email],
+          'RecordStatusID' => record_status_id,
         }
 
         options = {}
@@ -45,7 +47,8 @@ module ShelbyArena
         id,
         first_name: nil,
         last_name: nil,
-        email: nil
+        email: nil,
+        record_status_id: nil
       )
         path = "#{people_path(id)}/update"
 
@@ -54,6 +57,7 @@ module ShelbyArena
         body['FirstName'] = first_name if first_name
         body['LastName'] = last_name if last_name
         body['Emails'] = ['Address' => email] if email
+        body['RecordStatusID'] = record_status_id if record_status_id
 
         options = {}
         options[:api_sig] = generate_api_sig(path, options)
