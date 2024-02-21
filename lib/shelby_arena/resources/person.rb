@@ -26,7 +26,8 @@ module ShelbyArena
         first_name:,
         last_name:,
         email:,
-        record_status_id: 2
+        record_status_id: 2,
+        campus_id: nil
       )
         path = 'person/add'
 
@@ -34,8 +35,10 @@ module ShelbyArena
           'FirstName' => first_name,
           'LastName' => last_name,
           'Emails' => ['Address' => email],
-          'RecordStatusID' => record_status_id,
+          'RecordStatusID' => record_status_id
         }
+
+        body['CampusID'] = campus_id if campus_id
 
         options = {}
         options[:api_sig] = generate_api_sig(path, options)

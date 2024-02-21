@@ -7,7 +7,9 @@ module ShelbyArena
         last_name: 'LastName',
         person_id: 'PersonID',
         person_link: 'PersonLink',
-        gender: 'Gender'
+        gender: 'Gender',
+        campus_id: 'CampusID',
+        campus: 'CampusName'
       }.freeze
 
       def format_single(data)
