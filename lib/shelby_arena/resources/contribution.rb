@@ -46,7 +46,12 @@ module ShelbyArena
         options[:api_sig] = generate_api_sig(path, options)
 
         res = json_post("#{path}?api_session=#{options[:api_session]}&api_sig=#{options[:api_sig]}", body.to_json)
-        res.dig('ModifyResult', 'ObjectID')
+
+        if res.dig('ModifyResult', 'Successful').downcase == 'false'
+          raise ShelbyArena::Error, res.dig('ModifyResult')
+        else
+          res.dig('ModifyResult', 'ObjectID')
+        end
       end
 
       private
