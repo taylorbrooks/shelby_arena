@@ -57,7 +57,7 @@ module ShelbyArena
       private
 
       def sum_of_funds(contribution_funds)
-        contribution_funds.map { |fund| fund[:amount] }.sum
+        contribution_funds.map { |fund| fund[:amount] }.sum.round(2)
       end
 
       def translate_funds(contribution_funds)
